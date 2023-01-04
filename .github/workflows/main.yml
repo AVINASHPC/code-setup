@@ -39,7 +39,7 @@ jobs:
       - name: Get EC2 instance public IP address
         run: aws ec2 describe-instances --filters "Name=tag:Name,Values=my-ec2-instance" --query "Reservations[*].Instances[*].PublicIpAddress" --output text
       - name: Add SSH key
-        run: eval "$(ssh-agent -s)" && ssh-add <(echo "${{ secrets.SSH_PRIVATE_KEY }}")
+        run: eval "$(ssh-agent -s)" && /usr/bin/ssh-add <(echo "${{ secrets.SSH_PRIVATE_KEY }}")
       - name: Add SSH key
         run: ssh-add <(echo "${{ secrets.SSH_PRIVATE_KEY }}")
       - name: Connect to EC2 instance
