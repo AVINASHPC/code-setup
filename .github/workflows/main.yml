@@ -39,7 +39,7 @@ jobs:
       - name: Get EC2 instance public IP address
         run: aws ec2 describe-instances --filters "Name=tag:Name,Values=my-ec2-instance" --query "Reservations[*].Instances[*].PublicIpAddress" --output text
       - name: Connect to EC2 instance
-        run: ssh -o StrictHostKeyChecking=no ec2-user@${{ steps.get-ec2-public-ip.outputs.text }}
+        run: ssh -o StrictHostKeyChecking=no ec2-user@ec2-18-191-191-38.us-east-2.compute.amazonaws.com
       - name: Deploy to EC2 instance
         run: |
           # Build and deploy your service on the EC2 instance
